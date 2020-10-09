@@ -41,10 +41,11 @@ main {
 }
 
 .peg {
+    height: 400px;
     background: black;
 }
 
-.ring {
+.peg, .ring {
     margin: 0 auto;
     height: 25px;
     border: 3px solid black;
