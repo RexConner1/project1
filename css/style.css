@@ -1,3 +1,16 @@
 header {
     text-align: center;
 }
+
+main {
+    display: grid;
+    grid-template-rows: 1fr 400px 40px 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.base {
+    grid-row: 3;
+    grid-column: 1 / span 3;
+    width: auto;
+    background: black;
+}
