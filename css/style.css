@@ -20,9 +20,9 @@ main {
     width: auto;
     height: auto;
     
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;    /*depends on number of rings */
-    grid-template-columns: 1fr 25px 1fr;
+    /* display: grid;
+    grid-template-rows: 1fr 25px 25px 25px;
+    grid-template-columns: 1fr 25px 1fr; */
 }
 
 .container1 {
@@ -41,8 +41,8 @@ main {
 }
 
 .peg {
-    grid-row: 1 / span 3;
-    grid-column: 2;
+    /* grid-row: 1 / span 4;
+    grid-column: 2; */
     background: black;
 }
 
