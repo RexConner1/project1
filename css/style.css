@@ -19,6 +19,10 @@ main {
     grid-row: 2;
     width: auto;
     height: auto;
+    
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;    /*depends on number of rings */
+    grid-template-columns: 1fr 25px 1fr;
 }
 
 .container1 {
@@ -36,11 +40,11 @@ main {
     /* background: blue; */
 }
 
-/* .peg {
-    height: 400px;
-    width: 25px;
+.peg {
+    grid-row: 1 / span 3;
+    grid-column: 2;
     background: black;
-} */
+}
 
 /* .ring {
     height: 25px;
