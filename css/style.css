@@ -19,10 +19,10 @@ main {
     grid-row: 2;
     width: auto;
     height: auto;
-    
-    /* display: grid;
-    grid-template-rows: 1fr 25px 25px 25px;
-    grid-template-columns: 1fr 25px 1fr; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .container1 {
@@ -41,13 +41,23 @@ main {
 }
 
 .peg {
-    /* grid-row: 1 / span 4;
-    grid-column: 2; */
     background: black;
 }
 
-/* .ring {
+.ring {
+    margin: 0 auto;
     height: 25px;
-    width: 100px;
-    background: blue;
-} */
+    border: 3px solid black;
+}
+
+#ring1 {
+    width: 200px;
+}
+
+#ring2 {
+    width: 175px;
+}
+
+#ring3 {
+    width: 150px;
+}
