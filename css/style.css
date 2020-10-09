@@ -14,3 +14,16 @@ main {
     width: auto;
     background: black;
 }
+
+.pegs {
+    grid-row: 2;
+    grid-column: 1 / span 3;
+    display: flex;
+    justify-content: space-around;
+}
+
+.peg {
+    height: 400px;
+    width: 25px;
+    background: black;
+}
