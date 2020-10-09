@@ -27,3 +27,9 @@ main {
     width: 25px;
     background: black;
 }
+
+.ring {
+    height: 25px;
+    width: 100px;
+    background: blue;
+}
