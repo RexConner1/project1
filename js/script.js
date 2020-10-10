@@ -10,6 +10,15 @@ class Peg {
     constructor() {
         this.ringsOnPeg = [];
     }
+
+    addRing(ring) {
+        this.ringsOnPeg.push(ring);
+    }
+
+    removeRing() {
+        this.ringsOnPeg.pop();
+    }
+
 }
 
 class Ring {
