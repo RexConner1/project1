@@ -31,14 +31,16 @@ class Peg {
 }
 
 class Ring {
-    constructor(units) {
-        this.size = units * 25;
+    constructor(ringIndex) {
+        this.ringIndex = ringIndex;
+        this.createNewRingElement();
     }
 
-    createNewRing() {
+    createNewRingElement() {
         const ring = document.createElement(`div`);
         ring.classList = `ring`;
-        // ring.id = `ring${}`;
+        ring.id = `ring${this.ringIndex}`;
+        ring.style.width = this.ringIndex * 25;
         ring.addEventListener(`click`, this.selectRing);
     }
 
