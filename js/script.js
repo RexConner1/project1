@@ -5,6 +5,14 @@ class Game {
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
         this.listOfPegs = this.initializeArray(Peg, numberOfRings);
         this.listOfPegs[0].ringsOnPeg = this.listOfPegs;
+        // console.log(this.listOfPegs);
+        // console.log(this.listOfRings);
+    }
+
+    createContainer(index) {
+        const container = document.createElement(`div`);
+        container.className = `container`;
+        container.id = `container${index}`;
     }
 
     initializeArray(Object, quantity) {
@@ -33,7 +41,7 @@ class Peg {
 class Ring {
     constructor(ringIndex) {
         this.ringIndex = ringIndex;
-        this.createNewRingElement();
+        this.ringElement = this.createNewRingElement();
     }
 
     createNewRingElement() {
@@ -42,6 +50,9 @@ class Ring {
         ring.id = `ring${this.ringIndex}`;
         ring.style.width = this.ringIndex * 25;
         ring.addEventListener(`click`, this.selectRing);
+
+        // const container = document.querySelector(`.container1`);
+        // container.appendChild(ring);
     }
 
     selectRing() {
