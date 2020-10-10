@@ -7,7 +7,7 @@ class Game {
 
         // this.listOfPegs.forEach(peg => this.createContainer(peg.index));
 
-        this.listOfPegs[0].ringsOnPeg = this.listOfPegs;
+        this.listOfPegs[0].ringsOnPeg = this.listOfRings;
         console.log(this.listOfPegs);
         console.log(this.listOfRings);
     }
