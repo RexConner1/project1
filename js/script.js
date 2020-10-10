@@ -3,7 +3,6 @@ console.log(`JS working!`);
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
-        // this.listOfPegs.forEach(peg => this.createContainer(peg.index));
 
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
         
@@ -14,16 +13,6 @@ class Game {
 
     initializeArray(Object, quantity) {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
-    }
-
-    createContainer(index) {
-        const containers = document.querySelector(`.containers`);
-
-        const container = document.createElement(`div`);
-        container.className = `container`;
-        container.id = `container${index}`;
-
-        containers.appendChild(container);
     }
 
     movePeg() {
