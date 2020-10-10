@@ -3,20 +3,27 @@ console.log(`JS working!`);
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
-        this.listOfPegs = this.initializeArray(Peg, numberOfRings);
-        this.listOfPegs[0].ringsOnPeg = this.listOfPegs;
-        // console.log(this.listOfPegs);
-        // console.log(this.listOfRings);
-    }
+        this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
 
-    createContainer(index) {
-        const container = document.createElement(`div`);
-        container.className = `container`;
-        container.id = `container${index}`;
+        // this.listOfPegs.forEach(peg => this.createContainer(peg.index));
+
+        this.listOfPegs[0].ringsOnPeg = this.listOfPegs;
+        console.log(this.listOfPegs);
+        console.log(this.listOfRings);
     }
 
     initializeArray(Object, quantity) {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
+    }
+
+    createContainer(index) {
+        const containers = document.querySelector(`.containers`);
+
+        const container = document.createElement(`div`);
+        container.className = `container`;
+        container.id = `container${index}`;
+
+        containers.appendChild(container);
     }
 
     movePeg() {
@@ -26,6 +33,7 @@ class Game {
 
 class Peg {
     constructor(pegIndex) {
+        this.index = pegIndex;
         this.ringsOnPeg = [];
     }
 
@@ -40,7 +48,7 @@ class Peg {
 
 class Ring {
     constructor(ringIndex) {
-        this.ringIndex = ringIndex;
+        this.index = ringIndex;
         this.ringElement = this.createNewRingElement();
     }
 
