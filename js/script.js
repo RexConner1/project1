@@ -4,6 +4,7 @@ class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
         this.listOfPegs = this.initializeArray(Peg, numberOfRings);
+        this.listOfPegs[0].ringsOnPeg = this.listOfPegs;
     }
 
     initializeArray(Object, quantity) {
