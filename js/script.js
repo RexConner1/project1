@@ -14,7 +14,7 @@ class Game {
             peg.element.addEventListener(`click`, (event) => this.selectPeg(event));
         });
         this.listOfPegs[0].ringsOnPeg.forEach(ring => {
-            ring.element.addEventListener(`mouseover`, this.onRingEntry);
+            ring.element.addEventListener(`mouseover`, (event) => this.onRingEntry(event));
             ring.element.addEventListener(`mouseleave`, this.onRingDeparture);
             ring.element.addEventListener(`click`, (event) => this.selectRing(event));
         });
@@ -33,12 +33,9 @@ class Game {
     }
 
     onPegEntry() {
-        // if (this.style.background !== `green`) {
-        // console.log(this.selectedRing);
         if(this.selectedRing) {
             event.target.style.background = `green`;
         }
-        // }
     }
 
     onPegDeparture() {
@@ -58,9 +55,10 @@ class Game {
         console.log(this);
     }
 
-    onRingEntry() {
-        if (this.style.background !== `green`) {
-            this.style.background = `yellow`;
+    onRingEntry(event) {
+        const ringOnTop = this.listOfPegs[0].getTopRing().element;
+        if (event.target.style.background !== `green` && ringOnTop === event.target) {
+            event.target.style.background = `yellow`;
         }
     }
 
@@ -116,6 +114,10 @@ class Peg {
         rings.classList = `rings`;
 
         container.appendChild(rings);
+    }
+
+    getTopRing() {
+        return this.ringsOnPeg[this.ringsOnPeg.length - 1];
     }
 
     addRing(ring) {
