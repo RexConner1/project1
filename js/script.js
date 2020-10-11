@@ -45,9 +45,12 @@ class Peg {
         peg.classList = `peg`;
         peg.id = `peg${this.index}`;
         peg.style.height = `400px`;
-        peg.style.width = `25px`;
+        peg.style.width = `24px`;
         peg.style.margin = `0 auto`;
         peg.style.background = `black`;
+        peg.style.border = `1px solid black`;
+        peg.addEventListener(`mouseover`, this.hoverPeg);
+        peg.addEventListener(`mouseleave`, this.deselectPeg);
         peg.addEventListener(`click`, this.selectPeg);
 
         container.appendChild(peg);
@@ -63,7 +66,17 @@ class Peg {
     }
 
     selectPeg() {
-        console.log(`Hello`);
+        peg.removeEventListener(`mouseover`, this.hoverPeg);
+        peg.removeEventListener(`mouseleave`, this.deselectPeg);
+        this.style.background = `green`;
+    }
+
+    hoverPeg() {
+        this.style.background = `yellow`;
+    }
+
+    deselectPeg() {
+        this.style.background = ``;
     }
 
     addRing(ring) {
@@ -88,13 +101,25 @@ class Ring {
         ring.classList = `ring`;
         ring.id = `ring${this.index}`;
         ring.style.width = (5 - this.index) * 25;
+        ring.addEventListener(`mouseover`, this.hoverRing);
+        ring.addEventListener(`mouseleave`, this.deselectRing);
         ring.addEventListener(`click`, this.selectRing);
 
         container.prepend(ring);
     }
 
     selectRing() {
-        console.log(`Hi`);
+        this.removeEventListener(`mouseover`, this.hoverRing);
+        this.removeEventListener(`mouseleave`, this.deselectRing);
+        this.style.background = `green`;
+    }
+
+    hoverRing() {
+        this.style.background = `yellow`;
+    }
+
+    deselectRing() {
+        this.style.background = ``;
     }
 }
 
