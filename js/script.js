@@ -14,8 +14,12 @@ class Game {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
     }
 
-    movePeg() {
+    moveRing() {
         
+    }
+
+    isComplete() {
+
     }
 }
 
@@ -62,9 +66,9 @@ class Peg {
     }
 
     selectPeg() {
-        peg.removeEventListener(`mouseover`, this.hoverPeg);
-        peg.removeEventListener(`mouseleave`, this.deselectPeg);
-        this.style.background = `green`;
+        // this.removeEventListener(`mouseover`, this.hoverPeg);
+        // this.removeEventListener(`mouseleave`, this.deselectPeg);
+        // this.style.background = `green`;
     }
 
     hoverPeg() {
