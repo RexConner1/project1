@@ -100,7 +100,7 @@ class Ring {
         const ring = document.createElement(`div`);
         ring.classList = `ring`;
         ring.id = `ring${this.index}`;
-        ring.style.width = (5 - this.index) * 25;
+        ring.style.width = 200 - (25 * this.index);
         ring.addEventListener(`mouseover`, this.hoverRing);
         ring.addEventListener(`mouseleave`, this.deselectRing);
         ring.addEventListener(`click`, this.selectRing);
