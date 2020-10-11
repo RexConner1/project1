@@ -19,7 +19,7 @@ class Game {
             ring.element.addEventListener(`click`, (event) => this.selectRing(event));
         });
 
-        // console.log(this.listOfPegs);
+        // console.log(this);
     }
 
     initializeArray(Object, quantity) {
@@ -78,43 +78,45 @@ class Game {
     }
 }
 
-class Peg {
-    constructor(pegIndex) {
-        this.index = pegIndex;
-        this.ringsOnPeg = [];
+class Container {
+    constructor(containerIndex){
+        this.index = containerIndex;
         this.createContainer();
-        this.createNewPegElement();
         this.createRingsContainer();
     }
 
     createContainer() {
         const containers = document.querySelector(`.containers`);
 
-        const container = document.createElement(`div`);
-        container.className = `container`;
-        container.id = `container${this.index}`;
-        container.style.gridColumn = `${this.index + 1}`;
+        this.container = document.createElement(`div`);
+        this.container.className = `container`;
+        this.container.id = `container${this.index}`;
+        this.container.style.gridColumn = `${this.index + 1}`;
 
-        containers.appendChild(container);
+        containers.appendChild(this.container);
+    }
+
+    createRingsContainer() {
+        const rings = document.createElement(`div`);
+        rings.classList = `rings`;
+
+        this.container.appendChild(rings);
+    }
+}
+
+class Peg extends Container {
+    constructor(pegIndex) {
+        super(pegIndex);
+        this.ringsOnPeg = [];
+        this.createNewPegElement();
     }
 
     createNewPegElement() {
-        const container = document.querySelector(`#container${this.index}`);
-
         this.element = document.createElement(`div`);
         this.element.classList = `peg`;
         this.element.id = `peg${this.index}`;
 
-        container.appendChild(this.element);
-    }
-
-    createRingsContainer() {
-        const container = document.querySelector(`#container${this.index}`);
-
-        const rings = document.createElement(`div`);
-        rings.classList = `rings`;
-
-        container.appendChild(rings);
+        this.container.prepend(this.element);
     }
 
     getTopRing() {
