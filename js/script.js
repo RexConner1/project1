@@ -5,11 +5,13 @@ class Game {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
         this.listOfPegs[0].ringsOnPeg = this.initializeArray(Ring, numberOfRings);
         this.numberOfRings = numberOfRings;
+        this.selectedRing;
+        this.selectedPeg;
 
         this.listOfPegs.forEach(peg => {
-            peg.element.addEventListener(`mouseover`, this.onPegEntry);
+            peg.element.addEventListener(`mouseover`, (event) => this.onPegEntry(event));
             peg.element.addEventListener(`mouseleave`, this.onPegDeparture);
-            peg.element.addEventListener(`click`, this.selectPeg);
+            peg.element.addEventListener(`click`, (event) => this.selectPeg(event));
         });
         this.listOfPegs[0].ringsOnPeg.forEach(ring => {
             ring.element.addEventListener(`mouseover`, this.onRingEntry);
@@ -17,20 +19,25 @@ class Game {
             ring.element.addEventListener(`click`, (event) => this.selectRing(event));
         });
 
-        console.log(this.listOfPegs);
+        // console.log(this.listOfPegs);
     }
 
     initializeArray(Object, quantity) {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
     }
 
-    selectPeg() {
-        this.style.background = ``;
+    selectPeg(event) {
+        event.target.style.background = ``;
+        this.selectedPeg = event.target;
+        console.log(this);
     }
 
     onPegEntry() {
         // if (this.style.background !== `green`) {
-        this.style.background = `yellow`;
+        // console.log(this.selectedRing);
+        if(this.selectedRing) {
+            event.target.style.background = `green`;
+        }
         // }
     }
 
@@ -41,9 +48,13 @@ class Game {
     }
 
     selectRing(event) {
-        // console.log(event.target);
-        event.target.style.background = event.target.style.background === `green` ? `` : `green`;
-        this.selected = true;
+        if(event.target.style.background === `green`) {
+            event.target.style.background = ``;
+            this.selectedRing = ``;
+        } else {
+            event.target.style.background = `green`;
+            this.selectedRing = event.target;
+        }
         console.log(this);
     }
 
