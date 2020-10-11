@@ -3,7 +3,6 @@ console.log(`JS working!`);
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
-
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
         
         this.listOfPegs[0].ringsOnPeg = this.listOfRings;
@@ -49,7 +48,7 @@ class Peg {
         peg.style.width = `25px`;
         peg.style.margin = `0 auto`;
         peg.style.background = `black`;
-        peg.addEventListener(`click`, this.selectRing);
+        peg.addEventListener(`click`, this.selectPeg);
 
         container.appendChild(peg);
     }
@@ -61,6 +60,10 @@ class Peg {
         rings.classList = `rings`;
 
         container.appendChild(rings);
+    }
+
+    selectPeg() {
+        console.log(`Hello`);
     }
 
     addRing(ring) {
