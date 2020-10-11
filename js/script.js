@@ -102,25 +102,27 @@ class Ring {
         ring.classList = `ring`;
         ring.id = `ring${this.index}`;
         ring.style.width = `${200 - (25 * this.index)}px`;
-        ring.addEventListener(`mouseover`, this.hoverRing);
-        ring.addEventListener(`mouseleave`, this.deselectRing);
+        ring.addEventListener(`mouseover`, this.onRingEntry);
+        ring.addEventListener(`mouseleave`, this.onRingDeparture);
         ring.addEventListener(`click`, this.selectRing);
 
         container.prepend(ring);
     }
 
     selectRing() {
-        this.removeEventListener(`mouseover`, this.hoverRing);
-        this.removeEventListener(`mouseleave`, this.deselectRing);
-        this.style.background = `green`;
+        this.style.background = this.style.background === `green` ? `` : `green`;
     }
 
-    hoverRing() {
-        this.style.background = `yellow`;
+    onRingEntry() {
+        if (this.style.background !== `green`) {
+            this.style.background = `yellow`;
+        }
     }
 
-    deselectRing() {
-        this.style.background = ``;
+    onRingDeparture() {
+        if (this.style.background !== `green`) {
+            this.style.background = ``;
+        }
     }
 }
 
