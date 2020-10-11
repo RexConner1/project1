@@ -56,7 +56,8 @@ class Game {
     }
 
     onRingEntry(event) {
-        const ringOnTop = this.listOfPegs[0].getTopRing().element;
+        // console.log(event.target.closest(`.container`))
+        const ringOnTop = this.listOfPegs[0].getTopRing();
         if (event.target.style.background !== `green` && ringOnTop === event.target) {
             event.target.style.background = `yellow`;
         }
@@ -117,7 +118,7 @@ class Peg {
     }
 
     getTopRing() {
-        return this.ringsOnPeg[this.ringsOnPeg.length - 1];
+        return this.ringsOnPeg[this.ringsOnPeg.length - 1].element;
     }
 
     addRing(ring) {
