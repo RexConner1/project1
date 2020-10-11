@@ -11,12 +11,12 @@ class Game {
         this.listOfPegs.forEach(peg => {
             peg.element.addEventListener(`mouseover`, (event) => this.onPegEntry(event));
             peg.element.addEventListener(`mouseleave`, this.onPegDeparture);
-            peg.element.addEventListener(`click`, (event) => this.selectPeg(event));
+            peg.element.addEventListener(`click`, (event) => this.onPegClick(event));
         });
         this.listOfPegs[0].ringsOnPeg.forEach(ring => {
             ring.element.addEventListener(`mouseover`, (event) => this.onRingEntry(event));
             ring.element.addEventListener(`mouseleave`, this.onRingDeparture);
-            ring.element.addEventListener(`click`, (event) => this.selectRing(event));
+            ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
         });
 
         // console.log(this);
@@ -26,9 +26,10 @@ class Game {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
     }
 
-    selectPeg(event) {
-        event.target.style.background = ``;
+    onPegClick(event) {
         this.selectedPeg = event.target;
+        
+        event.target.style.background = ``;
         this.selectedRing.style.background = ``;
     }
 
@@ -44,7 +45,7 @@ class Game {
         // }
     }
 
-    selectRing(event) {
+    onRingClick(event) {
         if (event.target.style.background === `green`) {
             event.target.style.background = ``;
             this.selectedRing = ``;
@@ -69,13 +70,13 @@ class Game {
         }
     }
 
-    moveRing() {
-        
-    }
+    // moveRing() {
+    //     this.selectedPeg.appendChild(this.selectedRing);
+    // }
 
-    isComplete() {
+    // isComplete() {
 
-    }
+    // }
 }
 
 
