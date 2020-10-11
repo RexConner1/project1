@@ -7,8 +7,8 @@ class Game {
         
         this.listOfPegs[0].ringsOnPeg = this.listOfRings;
 
-        // console.log(this.listOfPegs);
-        // console.log(this.listOfRings);
+        console.log(this.listOfPegs);
+        console.log(this.listOfRings);
     }
 
     initializeArray(Object, quantity) {
@@ -50,8 +50,8 @@ class Peg {
         const peg = document.createElement(`div`);
         peg.classList = `peg`;
         peg.id = `peg${this.index}`;
-        peg.addEventListener(`mouseover`, this.hoverPeg);
-        peg.addEventListener(`mouseleave`, this.deselectPeg);
+        peg.addEventListener(`mouseover`, this.onPegEntry);
+        peg.addEventListener(`mouseleave`, this.onPegDeparture);
         peg.addEventListener(`click`, this.selectPeg);
 
         container.appendChild(peg);
@@ -72,11 +72,11 @@ class Peg {
         // this.style.background = `green`;
     }
 
-    hoverPeg() {
+    onPegEntry() {
         this.style.background = `yellow`;
     }
 
-    deselectPeg() {
+    onPegDeparture() {
         this.style.background = ``;
     }
 
