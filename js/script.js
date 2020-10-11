@@ -32,7 +32,7 @@ class Game {
         console.log(this);
     }
 
-    onPegEntry() {
+    onPegEntry(event) {
         if(this.selectedRing) {
             event.target.style.background = `green`;
         }
@@ -78,6 +78,7 @@ class Game {
     }
 }
 
+
 class Container {
     constructor(containerIndex){
         this.index = containerIndex;
@@ -103,6 +104,7 @@ class Container {
         this.container.appendChild(rings);
     }
 }
+
 
 class Peg extends Container {
     constructor(pegIndex) {
@@ -131,6 +133,7 @@ class Peg extends Container {
         this.ringsOnPeg.pop();
     }
 }
+
 
 class Ring {
     constructor(ringIndex) {
