@@ -34,6 +34,7 @@ class Peg {
         const container = document.createElement(`div`);
         container.className = `container`;
         container.id = `container${this.index}`;
+        container.style.gridColumn = `${this.index + 1}`;
 
         containers.appendChild(container);
     }

@@ -32,18 +32,6 @@ main {
     justify-content: flex-end;
 }
 
-#container0 {
-    grid-column: 1;
-}
-
-#container1 {
-    grid-column: 2;
-}
-
-#container2 {
-    grid-column: 3;
-}
-
 .peg {
     height: 400px;
     width: 25px;
