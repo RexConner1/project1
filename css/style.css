@@ -56,15 +56,3 @@ main {
     height: 25px;
     border: 3px solid black;
 }
-
-#ring0 {
-    width: 200px;
-}
-
-#ring1 {
-    width: 175px;
-}
-
-#ring2 {
-    width: 150px;
-}
