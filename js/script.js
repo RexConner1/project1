@@ -49,7 +49,7 @@ class Game {
         if (event.target.style.background === `green`) {
             event.target.style.background = ``;
             this.selectedRing = ``;
-        } else {
+        } else if (true) {
             event.target.style.background = `green`;
             this.selectedRing = event.target;
         }
