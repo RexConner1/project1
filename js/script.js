@@ -6,8 +6,9 @@ class Game {
         this.listOfRings = this.initializeArray(Ring, numberOfRings);
         
         this.listOfPegs[0].ringsOnPeg = this.listOfRings;
-        console.log(this.listOfPegs);
-        console.log(this.listOfRings);
+
+        // console.log(this.listOfPegs);
+        // console.log(this.listOfRings);
     }
 
     initializeArray(Object, quantity) {
