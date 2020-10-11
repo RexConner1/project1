@@ -3,16 +3,60 @@ console.log(`JS working!`);
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
-        this.listOfRings = this.initializeArray(Ring, numberOfRings);
-        
-        this.listOfPegs[0].ringsOnPeg = this.listOfRings;
+        this.listOfPegs[0].ringsOnPeg = this.initializeArray(Ring, numberOfRings);
+        this.numberOfRings = numberOfRings;
+
+        this.listOfPegs.forEach(peg => {
+            peg.element.addEventListener(`mouseover`, this.onPegEntry);
+            peg.element.addEventListener(`mouseleave`, this.onPegDeparture);
+            peg.element.addEventListener(`click`, this.selectPeg);
+        });
+        this.listOfPegs[0].ringsOnPeg.forEach(ring => {
+            ring.element.addEventListener(`mouseover`, this.onRingEntry);
+            ring.element.addEventListener(`mouseleave`, this.onRingDeparture);
+            ring.element.addEventListener(`click`, (event) => this.selectRing(event));
+        });
 
         console.log(this.listOfPegs);
-        console.log(this.listOfRings);
     }
 
     initializeArray(Object, quantity) {
         return Array.from(Array(quantity), (item, index) => item = new Object(index));
+    }
+
+    selectPeg() {
+        this.style.background = ``;
+    }
+
+    onPegEntry() {
+        // if (this.style.background !== `green`) {
+        this.style.background = `yellow`;
+        // }
+    }
+
+    onPegDeparture() {
+        // if (this.style.background !== `green`) {
+        this.style.background = ``;
+        // }
+    }
+
+    selectRing(event) {
+        // console.log(event.target);
+        event.target.style.background = event.target.style.background === `green` ? `` : `green`;
+        this.selected = true;
+        console.log(this);
+    }
+
+    onRingEntry() {
+        if (this.style.background !== `green`) {
+            this.style.background = `yellow`;
+        }
+    }
+
+    onRingDeparture() {
+        if (this.style.background !== `green`) {
+            this.style.background = ``;
+        }
     }
 
     moveRing() {
@@ -47,14 +91,11 @@ class Peg {
     createNewPegElement() {
         const container = document.querySelector(`#container${this.index}`);
 
-        const peg = document.createElement(`div`);
-        peg.classList = `peg`;
-        peg.id = `peg${this.index}`;
-        peg.addEventListener(`mouseover`, this.onPegEntry);
-        peg.addEventListener(`mouseleave`, this.onPegDeparture);
-        peg.addEventListener(`click`, this.selectPeg);
+        this.element = document.createElement(`div`);
+        this.element.classList = `peg`;
+        this.element.id = `peg${this.index}`;
 
-        container.appendChild(peg);
+        container.appendChild(this.element);
     }
 
     createRingsContainer() {
@@ -64,20 +105,6 @@ class Peg {
         rings.classList = `rings`;
 
         container.appendChild(rings);
-    }
-
-    selectPeg() {
-        // this.removeEventListener(`mouseover`, this.hoverPeg);
-        // this.removeEventListener(`mouseleave`, this.deselectPeg);
-        // this.style.background = `green`;
-    }
-
-    onPegEntry() {
-        this.style.background = `yellow`;
-    }
-
-    onPegDeparture() {
-        this.style.background = ``;
     }
 
     addRing(ring) {
@@ -98,31 +125,12 @@ class Ring {
     createNewRingElement() {
         const container = document.querySelector(`#container0 .rings`);
 
-        const ring = document.createElement(`div`);
-        ring.classList = `ring`;
-        ring.id = `ring${this.index}`;
-        ring.style.width = `${200 - (25 * this.index)}px`;
-        ring.addEventListener(`mouseover`, this.onRingEntry);
-        ring.addEventListener(`mouseleave`, this.onRingDeparture);
-        ring.addEventListener(`click`, this.selectRing);
+        this.element = document.createElement(`div`);
+        this.element.classList = `ring`;
+        this.element.id = `ring${this.index}`;
+        this.element.style.width = `${200 - (25 * this.index)}px`;
 
-        container.prepend(ring);
-    }
-
-    selectRing() {
-        this.style.background = this.style.background === `green` ? `` : `green`;
-    }
-
-    onRingEntry() {
-        if (this.style.background !== `green`) {
-            this.style.background = `yellow`;
-        }
-    }
-
-    onRingDeparture() {
-        if (this.style.background !== `green`) {
-            this.style.background = ``;
-        }
+        container.prepend(this.element);
     }
 }
 
