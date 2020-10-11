@@ -37,6 +37,7 @@ main {
     width: 25px;
     margin: 0 auto;
     background: black;
+    border: 1px solid black;
 }
 
 .ring {

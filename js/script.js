@@ -45,11 +45,6 @@ class Peg {
         const peg = document.createElement(`div`);
         peg.classList = `peg`;
         peg.id = `peg${this.index}`;
-        peg.style.height = `400px`;
-        peg.style.width = `24px`;
-        peg.style.margin = `0 auto`;
-        peg.style.background = `black`;
-        peg.style.border = `1px solid black`;
         peg.addEventListener(`mouseover`, this.hoverPeg);
         peg.addEventListener(`mouseleave`, this.deselectPeg);
         peg.addEventListener(`click`, this.selectPeg);
