@@ -29,11 +29,11 @@ class Game {
     selectPeg(event) {
         event.target.style.background = ``;
         this.selectedPeg = event.target;
-        console.log(this);
+        this.selectedRing.style.background = ``;
     }
 
     onPegEntry(event) {
-        if(this.selectedRing) {
+        if (this.selectedRing) {
             event.target.style.background = `green`;
         }
     }
@@ -45,7 +45,7 @@ class Game {
     }
 
     selectRing(event) {
-        if(event.target.style.background === `green`) {
+        if (event.target.style.background === `green`) {
             event.target.style.background = ``;
             this.selectedRing = ``;
         } else {
