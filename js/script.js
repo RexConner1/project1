@@ -35,7 +35,7 @@ class Game {
     }
 
     onPegClick(event) {
-        if (this.isThisPegsTopRingBiggerThanMovingOne(event.target)) {
+        if (this.selectedRing && this.isThisPegsTopRingBiggerThanMovingOne(event.target)) {
             this.selectedPeg = event.target;
             this.moveRing();
             this.resetSelections();
@@ -57,7 +57,7 @@ class Game {
         this.selectedPeg.style.background = ``;
 
         this.selectedRing = ``;
-        this.selectedRing = ``;
+        this.selectedPeg = ``;
     }
 
     onPegEntry(event) {
