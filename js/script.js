@@ -148,6 +148,7 @@ class Game {
         console.log(message);
         const winnerMessage = document.querySelector(`.output p`);
         winnerMessage.innerHTML = message;
+        window.setTimeout(() => alert(message), 250);
     }
 }
 
