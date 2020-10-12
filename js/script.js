@@ -1,5 +1,6 @@
 console.log(`JS working!`);
 
+let seconds = 0;
 const timer = document.querySelector(`.timer p`);
 const score = document.querySelector(`.score p`);
 const moves = document.querySelector(`.moves p`);
@@ -114,12 +115,7 @@ class Game {
 
     getCurrentScore() {
         let tempScore = localStorage.getItem('score');
-        if (tempScore){
-            tempScore = parseInt(tempScore);
-        } else {
-            tempScore = 0;
-        }
-        return tempScore;
+        return tempScore ? parseInt(tempScore) : 0;
     }
 
     updateScore() {
@@ -232,7 +228,7 @@ class Reset {
 }
 
 
-let seconds = 0;
+
 setInterval(setTime, 1000);
 
 function setTime() {
