@@ -18,6 +18,10 @@ class Game {
             ring.element.addEventListener(`mouseleave`, (event) => this.onRingDeparture(event));
             ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
         });
+
+        if (localStorage.getItem('score')){
+            document.querySelector(`.score p`).innerHTML = localStorage.getItem('score')
+        }
     }
 
     initializeArray(Object, quantity) {
@@ -30,9 +34,8 @@ class Game {
             this.moveRing();
             this.resetSelections();
             if (this.isComplete()) {
-                console.log(`Congratulations. You've won!`);
-                const winnerMessage = document.querySelector(`.output p`);
-                winnerMessage.innerHTML = `Congratulations. You've won!`;
+                this.outputWinMessage();
+                this.updateScore();
             }
         }
     }
@@ -97,9 +100,33 @@ class Game {
 
     moveRing() {
         this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
+        this.increaseMoveCounter();
+    }
 
+    increaseMoveCounter() {
         const currentMoves = document.querySelector(`.moves p`);
         currentMoves.innerHTML = parseInt(currentMoves.innerHTML) + 1;
+    }
+
+    updateScore() {
+        let score = document.querySelector(`.score p`);
+        let time = seconds;
+        let moves = document.querySelector(`.moves p`);
+
+        moves = parseInt(moves.innerHTML);
+
+        const currentScore = localStorage.getItem(`score`) ? parseInt(localStorage.getItem(`score`)) : 0;
+        localStorage.setItem(`score`, currentScore + this.determineScore(time, moves));
+        score.innerHTML = localStorage.getItem(`score`);
+    }
+
+    determineScore(userTime, userMoves) {
+        const minimumNumberOfMoves = 2 ** this.numberOfRings - 1;
+        const numberOfSecondsToSolve = minimumNumberOfMoves;                    //1 second per move
+        const numerator = minimumNumberOfMoves * numberOfSecondsToSolve * 1000; //Constant
+        const denominator = userTime * userMoves                                //Make moves and time inversely proportional
+
+        return Math.round(numerator/denominator);
     }
 
     isComplete() {
@@ -108,6 +135,13 @@ class Game {
             isWon = isWon || peg.rings.querySelectorAll(`.ring`).length === this.numberOfRings;
         });
         return isWon;
+    }
+
+    outputWinMessage() {
+        const message = `Congratulations. You've won!`
+        console.log(message);
+        const winnerMessage = document.querySelector(`.output p`);
+        winnerMessage.innerHTML = message;
     }
 }
 
