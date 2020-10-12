@@ -170,6 +170,7 @@ class Ring {
 }
 
 
+
 let seconds = 0;
 setInterval(setTime, 1000);
 
@@ -185,4 +186,13 @@ function convert(seconds) {
 }
 
 
-new Game(3);
+const reset = document.querySelector(`#resetButton`);
+reset.addEventListener(`click`, () => {
+    localStorage.setItem(`rings`, 3);
+    location.reload();
+});
+
+
+
+new Game(parseInt(localStorage.getItem('rings') ? localStorage.getItem('rings') : 3));
+localStorage.removeItem('rings');
