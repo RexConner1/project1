@@ -18,15 +18,15 @@ main {
     align-items: center; */
 }
 
-.timer, .hint {
+.timer, .reset {
     grid-column: 1;
 }
 
-.totalScore, .hint {
+.score, .hint {
     grid-column: 2;
 }
 
-.currentScore, .solve {
+.moves, .solve {
     grid-column: 3;
 }
 

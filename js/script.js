@@ -95,6 +95,9 @@ class Game {
 
     moveRing() {
         this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
+
+        const currentMoves = document.querySelector(`.moves p`);
+        currentMoves.innerHTML = parseInt(currentMoves.innerHTML) + 1;
     }
 
     isComplete() {
