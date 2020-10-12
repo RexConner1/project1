@@ -1,5 +1,9 @@
 console.log(`JS working!`);
 
+const timer = document.querySelector(`.timer p`);
+const score = document.querySelector(`.score p`);
+const moves = document.querySelector(`.moves p`);
+
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
@@ -19,9 +23,7 @@ class Game {
             ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
         });
 
-        if (localStorage.getItem('score')){
-            document.querySelector(`.score p`).innerHTML = localStorage.getItem('score')
-        }
+        score.innerHTML = this.getCurrentScore();
 
         new Reset();
     }
@@ -110,15 +112,21 @@ class Game {
         currentMoves.innerHTML = parseInt(currentMoves.innerHTML) + 1;
     }
 
+    getCurrentScore() {
+        let tempScore = localStorage.getItem('score');
+        if (tempScore){
+            tempScore = parseInt(tempScore);
+        } else {
+            tempScore = 0;
+        }
+        return tempScore;
+    }
+
     updateScore() {
-        let score = document.querySelector(`.score p`);
-        let time = seconds;
-        let moves = document.querySelector(`.moves p`);
+        const time = seconds;
+        const numberOfMoves = parseInt(moves.innerHTML);
 
-        moves = parseInt(moves.innerHTML);
-
-        const currentScore = localStorage.getItem(`score`) ? parseInt(localStorage.getItem(`score`)) : 0;
-        localStorage.setItem(`score`, currentScore + this.determineScore(time, moves));
+        localStorage.setItem(`score`, this.getCurrentScore() + this.determineScore(time, numberOfMoves));
         score.innerHTML = localStorage.getItem(`score`);
     }
 
@@ -229,7 +237,7 @@ setInterval(setTime, 1000);
 
 function setTime() {
     seconds++;
-    document.querySelector(`.timer p`).innerHTML = convert(seconds);
+    timer.innerHTML = convert(seconds);
 }
 
 function convert(seconds) {
