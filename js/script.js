@@ -27,7 +27,7 @@ class Game {
         score.innerHTML = this.getCurrentScore();
 
         new Reset();
-        new Timer();
+        this.timer = new Timer();
     }
 
     initializeArray(Object, quantity) {
@@ -40,6 +40,7 @@ class Game {
             this.moveRing();
             this.resetSelections();
             if (this.isComplete()) {
+                this.timer.stopTime();
                 this.outputWinMessage();
                 this.updateScore();
             }
@@ -232,7 +233,7 @@ class Reset {
 
 class Timer {
     constructor() {
-        setInterval(this.setTime, 1000);
+        this.updateTimer = setInterval(this.setTime, 1000);
     }
 
     setTime() {
@@ -241,6 +242,10 @@ class Timer {
         let minutes = Math.floor(seconds / 60);
         seconds = seconds % 60;
         timer.innerHTML = `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
+    }
+
+    stopTime() {
+        clearInterval(this.updateTimer);
     }
 }
 
