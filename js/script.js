@@ -169,4 +169,20 @@ class Ring {
     }
 }
 
+
+let seconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+    seconds++;
+    document.querySelector(`.timer p`).innerHTML = convert(seconds);
+}
+
+function convert(seconds) {
+    let minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    return `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
+}
+
+
 new Game(3);
