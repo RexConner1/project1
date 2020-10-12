@@ -31,6 +31,9 @@ class Game {
             this.selectedPeg = event.target;
             this.moveRing();
             this.resetSelections();
+            if (this.isComplete()) {
+                console.log(`Congratulations. You've won!`);
+            }
         }
     }
 
@@ -101,9 +104,13 @@ class Game {
         this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
     }
 
-    // isComplete() {
-
-    // }
+    isComplete() {
+        let isWon = false;
+        this.listOfPegs.slice(1).forEach(peg => {
+            isWon = isWon || peg.rings.querySelectorAll(`.ring`).length === this.numberOfRings;
+        });
+        return isWon;
+    }
 }
 
 
@@ -126,10 +133,10 @@ class Container {
     }
 
     createRingsContainer() {
-        const rings = document.createElement(`div`);
-        rings.classList = `rings`;
+        this.rings = document.createElement(`div`);
+        this.rings.classList = `rings`;
 
-        this.container.appendChild(rings);
+        this.container.appendChild(this.rings);
     }
 }
 
