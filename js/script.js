@@ -27,12 +27,14 @@ class Game {
     }
 
     onPegClick(event) {
-        this.selectedPeg = event.target;
-        
-        event.target.style.background = ``;
-        this.selectedRing.style.background = ``;
+        if (!this.getTopRing(event.target) || this.getTopRing(event.target).style.width > this.selectedRing.style.width) {
+            this.selectedPeg = event.target;
+            
+            event.target.style.background = ``;
+            this.selectedRing.style.background = ``;
 
-        this.moveRing();
+            this.moveRing();
+        }
     }
 
     onPegEntry(event) {
@@ -51,7 +53,7 @@ class Game {
         if (this.isRingSelected(event)) {
             event.target.style.background = ``;
             this.selectedRing = ``;
-        } else if (this.isTopRing(event)) {
+        } else if (this.isTopRing(event.target)) {
             event.target.style.background = `green`;
             this.selectedRing = event.target;
         }
@@ -61,7 +63,7 @@ class Game {
     onRingEntry(event) {
         // console.log(event.target.closest(`.container`))
         // const ringOnTop = this.listOfPegs[0].getTopRing();
-        if (!this.isRingSelected(event) && this.isTopRing(event)) {
+        if (!this.isRingSelected(event) && this.isTopRing(event.target)) {
             event.target.style.background = `yellow`;
         }
     }
@@ -72,8 +74,13 @@ class Game {
         }
     }
 
-    isTopRing(event) {
-        return event.target.parentElement.querySelector(`.ring`) === event.target;
+    isTopRing(ring) {
+        return this.getTopRing(ring) === ring;
+    }
+
+    getTopRing(peg) {
+        const topRing = peg.parentElement.querySelector(`.ring`);
+        return topRing ? topRing : false;
     }
 
     isRingSelected(event) {
