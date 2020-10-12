@@ -31,6 +31,8 @@ class Game {
         
         event.target.style.background = ``;
         this.selectedRing.style.background = ``;
+
+        this.moveRing();
     }
 
     onPegEntry(event) {
@@ -78,9 +80,9 @@ class Game {
         return event.target.style.background === `green`;
     }
 
-    // moveRing() {
-    //     this.selectedPeg.appendChild(this.selectedRing);
-    // }
+    moveRing() {
+        this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
+    }
 
     // isComplete() {
 
