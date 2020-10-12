@@ -31,6 +31,8 @@ class Game {
             this.resetSelections();
             if (this.isComplete()) {
                 console.log(`Congratulations. You've won!`);
+                const winnerMessage = document.querySelector(`.output p`);
+                winnerMessage.innerHTML = `Congratulations. You've won!`;
             }
         }
     }
