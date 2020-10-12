@@ -27,7 +27,7 @@ class Game {
     }
 
     onPegClick(event) {
-        if (!this.getTopRing(event.target) || this.getTopRing(event.target).style.width > this.selectedRing.style.width) {
+        if (this.isCurrentTopRingBiggerThanMovingOne(event.target)) {
             this.selectedPeg = event.target;
             
             event.target.style.background = ``;
@@ -35,6 +35,11 @@ class Game {
 
             this.moveRing();
         }
+    }
+
+    isCurrentTopRingBiggerThanMovingOne(peg) {
+        const currentTopRing = this.getTopRing(peg);
+        return !currentTopRing || currentTopRing.style.width > this.selectedRing.style.width;
     }
 
     onPegEntry(event) {
