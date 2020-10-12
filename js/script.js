@@ -27,6 +27,7 @@ class Game {
         score.innerHTML = this.getCurrentScore();
 
         new Reset();
+        new Timer();
     }
 
     initializeArray(Object, quantity) {
@@ -229,18 +230,18 @@ class Reset {
 }
 
 
+class Timer {
+    constructor() {
+        setInterval(this.setTime, 1000);
+    }
 
-setInterval(setTime, 1000);
+    setTime() {
+        seconds++;
 
-function setTime() {
-    seconds++;
-    timer.innerHTML = convert(seconds);
-}
-
-function convert(seconds) {
-    let minutes = Math.floor(seconds / 60);
-    seconds = seconds % 60;
-    return `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
+        let minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        timer.innerHTML = `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
+    }
 }
 
 
