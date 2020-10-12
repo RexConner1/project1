@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tower of Hanoi</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,10 +13,32 @@
     <nav>
     </nav>
     <main>
-        <div class="containers">
+        <div class="top timer">
+            <h3>Timer:</h3>
+            <p>0:00</p>
+        </div>
+        <div class="top totalScore">
+            <h2>Total Score:</h2>
+            <p>x000</p>
+        </div>
+        <div class="top currentScore">
+            <h3>Total Score:</h3>
+            <p>x00</p>
         </div>
 
+        <div class="containers"></div>
+
         <div class="base"></div>
+
+        <div class="bottom reset">
+            <button id="resetButton">Reset</button>
+        </div>
+        <div class="bottom hint">
+            <button id="hintButton">Hint</button>
+        </div>
+        <div class="bottom solve">
+            <button id="resetButton">Solve</button>
+        </div>
     </main>
     <footer>
     </footer>

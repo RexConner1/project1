@@ -4,8 +4,30 @@ header {
 
 main {
     display: grid;
-    grid-template-rows: 40px 400px 40px 50px;
+    grid-template-rows: 150px 400px 40px 100px;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.top {
+    grid-row: 1;
+    text-align: center;
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.timer, .hint {
+    grid-column: 1;
+}
+
+.totalScore, .hint {
+    grid-column: 2;
+}
+
+.currentScore, .solve {
+    grid-column: 3;
 }
 
 .containers {
@@ -46,4 +68,12 @@ main {
     height: 25px;
     border: 2.5px solid black;
     text-align: center;
+}
+
+.bottom {
+    grid-row: 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
