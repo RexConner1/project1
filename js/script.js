@@ -22,6 +22,8 @@ class Game {
         if (localStorage.getItem('score')){
             document.querySelector(`.score p`).innerHTML = localStorage.getItem('score')
         }
+
+        new Reset();
     }
 
     initializeArray(Object, quantity) {
@@ -209,6 +211,18 @@ class Ring {
 }
 
 
+class Reset {
+    constructor() {
+        this.reset = document.querySelector(`#resetButton`);
+        this.reset.addEventListener(`click`, this.storeRingsAndRestart);
+    }
+
+    storeRingsAndRestart() {
+        localStorage.setItem(`rings`, 3);
+        location.reload();
+    }
+}
+
 
 let seconds = 0;
 setInterval(setTime, 1000);
@@ -223,13 +237,6 @@ function convert(seconds) {
     seconds = seconds % 60;
     return `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
 }
-
-
-const reset = document.querySelector(`#resetButton`);
-reset.addEventListener(`click`, () => {
-    localStorage.setItem(`rings`, 3);
-    location.reload();
-});
 
 
 
