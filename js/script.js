@@ -29,12 +29,17 @@ class Game {
     onPegClick(event) {
         if (this.isCurrentTopRingBiggerThanMovingOne(event.target)) {
             this.selectedPeg = event.target;
-            
-            event.target.style.background = ``;
-            this.selectedRing.style.background = ``;
-
             this.moveRing();
+            this.resetSelections();
         }
+    }
+
+    resetSelections() {
+        this.selectedRing.style.background = ``;
+        this.selectedPeg.style.background = ``;
+
+        this.selectedRing = ``;
+        this.selectedRing = ``;
     }
 
     isCurrentTopRingBiggerThanMovingOne(peg) {
