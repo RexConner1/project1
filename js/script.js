@@ -39,8 +39,8 @@ class Game {
     }
 
     onPegEntry(event) {
-        if (this.selectedRing) {
-            event.target.style.background = `green`;
+        if (this.selectedRing && this.isPegLegalForRing(event.target)) {
+            event.target.style.background = `yellow`;
         }
     }
 
@@ -49,7 +49,7 @@ class Game {
     }
 
     onPegClick(event) {
-        if (this.selectedRing && this.isThisPegsTopRingBiggerThanMovingOne(event.target)) {
+        if (this.selectedRing && this.isPegLegalForRing(event.target)) {
             this.selectedPeg = event.target;
             this.moveRing();
             this.resetSelections();
@@ -61,7 +61,7 @@ class Game {
         }
     }
 
-    isThisPegsTopRingBiggerThanMovingOne(peg) {
+    isPegLegalForRing(peg) {
         const currentTopRing = this.getTopRing(peg);
         return !currentTopRing || currentTopRing.style.width > this.selectedRing.style.width;
     }
@@ -223,7 +223,7 @@ class Ring {
 
 class Reset {
     constructor() {
-        this.reset = document.querySelector(`#resetButton`);
+        this.reset = document.querySelector(`#resetGame`);
         this.reset.addEventListener(`click`, this.storeRingsAndRestart);
     }
 
