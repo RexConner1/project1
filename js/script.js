@@ -193,6 +193,8 @@ class Container {
         this.container.className = `container`;
         this.container.id = `container${this.index}`;
         this.container.style.gridColumn = `${this.index + 1}`;
+        this.container.setAttribute(`ondrop`, `drop(event)`)
+        this.container.setAttribute(`ondragover`, `allowDrop(event)`);
 
         containers.appendChild(this.container);
     }
@@ -236,6 +238,8 @@ class Ring {
         this.element.classList = `ring`;
         this.element.id = `ring${this.index}`;
         this.element.style.width = `${200 - (25 * this.index)}px`;
+        this.element.setAttribute(`draggable`, `true`);
+        this.element.setAttribute(`ondragstart`, `drag(event)`);
 
         container.prepend(this.element);
     }
@@ -275,6 +279,19 @@ class Timer {
 }
 
 
+function allowDrop(event) {
+    event.preventDefault();
+}
+  
+function drag(event) {  //ring  
+    game.onRingClick(event);
+}
+  
+function drop(event) {  //peg or container
+    event.preventDefault();
+    game.onPegClick(event);
+}
 
-new Game(parseInt(localStorage.getItem('rings') ? localStorage.getItem('rings') : 3));
+
+let game = new Game(parseInt(localStorage.getItem('rings') ? localStorage.getItem('rings') : 3));
 localStorage.removeItem('rings');
