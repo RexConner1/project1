@@ -154,7 +154,7 @@ class Game {
 
     determineScore(userTime, userMoves) {
         const minimumNumberOfMoves = 2 ** this.numberOfRings - 1;
-        const numberOfSecondsToSolve = minimumNumberOfMoves;                    //1 second per move
+        const numberOfSecondsToSolve = minimumNumberOfMoves * 2;                //2 seconds per move
         const numerator = minimumNumberOfMoves * numberOfSecondsToSolve * 1000; //Constant
         const denominator = userTime * userMoves                                //Make moves and time inversely proportional
 
