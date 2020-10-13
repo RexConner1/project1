@@ -13,6 +13,19 @@ class Game {
         this.selectedRing;
         this.selectedPeg;
 
+        this.initializeEventListeners();
+
+        score.innerHTML = this.getCurrentScore();
+
+        new Reset();
+        this.timer = new Timer();
+    }
+
+    initializeArray(Object, quantity) {
+        return Array.from(Array(quantity), (item, index) => item = new Object(index));
+    }
+
+    initializeEventListeners() {
         this.listOfPegs.forEach(peg => {
             peg.element.addEventListener(`mouseover`, (event) => this.onPegEntry(event));
             peg.element.addEventListener(`mouseleave`, (event) => this.onPegDeparture(event));
@@ -23,15 +36,6 @@ class Game {
             ring.element.addEventListener(`mouseleave`, (event) => this.onRingDeparture(event));
             ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
         });
-
-        score.innerHTML = this.getCurrentScore();
-
-        new Reset();
-        this.timer = new Timer();
-    }
-
-    initializeArray(Object, quantity) {
-        return Array.from(Array(quantity), (item, index) => item = new Object(index));
     }
 
     onPegClick(event) {
