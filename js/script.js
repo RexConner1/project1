@@ -26,15 +26,35 @@ class Game {
     }
 
     initializeEventListeners() {
+        this.pointerToPegEntry = this.onPegEntry.bind(this);
+        this.pointerToPegDeparture = this.onPegDeparture.bind(this);
+        this.pointerToPegClick = this.onPegClick.bind(this);
+        this.pointerToRingEntry = this.onRingEntry.bind(this);
+        this.pointerToRingDeparture = this.onRingDeparture.bind(this);
+        this.pointerToRingClick = this.onRingClick.bind(this);
+
         this.listOfPegs.forEach(peg => {
-            peg.element.addEventListener(`mouseover`, (event) => this.onPegEntry(event));
-            peg.element.addEventListener(`mouseleave`, (event) => this.onPegDeparture(event));
-            peg.element.addEventListener(`click`, (event) => this.onPegClick(event));
+            peg.element.addEventListener(`mouseover`, this.pointerToPegEntry);
+            peg.element.addEventListener(`mouseleave`, this.pointerToPegDeparture);
+            peg.element.addEventListener(`click`, this.pointerToPegClick);
         });
         this.listOfRings.forEach(ring => {
-            ring.element.addEventListener(`mouseover`, (event) => this.onRingEntry(event));
-            ring.element.addEventListener(`mouseleave`, (event) => this.onRingDeparture(event));
-            ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
+            ring.element.addEventListener(`mouseover`, this.pointerToRingEntry);
+            ring.element.addEventListener(`mouseleave`, this.pointerToRingDeparture);
+            ring.element.addEventListener(`click`, this.pointerToRingClick);
+        });
+    }
+
+    destroyEventListeners() {
+        this.listOfPegs.forEach(peg => {
+            peg.element.removeEventListener(`mouseover`, this.pointerToPegEntry);
+            peg.element.removeEventListener(`mouseleave`, this.pointerToPegDeparture);
+            peg.element.removeEventListener(`click`, this.pointerToPegClick);
+        });
+        this.listOfRings.forEach(ring => {
+            ring.element.removeEventListener(`mouseover`, this.pointerToRingEntry);
+            ring.element.removeEventListener(`mouseleave`, this.pointerToRingDeparture);
+            ring.element.removeEventListener(`click`, this.pointerToRingClick);
         });
     }
 
@@ -55,6 +75,7 @@ class Game {
             this.resetSelections();
             if (this.isComplete()) {
                 this.timer.stopTime();
+                this.destroyEventListeners();
                 this.outputWinMessage();
                 this.updateScore();
             }
