@@ -243,8 +243,8 @@ class Timer {
         seconds++;
 
         let minutes = Math.floor(seconds / 60);
-        seconds = seconds % 60;
-        timer.innerHTML = `${minutes}:${(seconds + "").length < 2 ? `0` : ``}${seconds}`
+        let secondsTemp = seconds % 60;
+        timer.innerHTML = `${minutes}:${(secondsTemp + "").length < 2 ? `0` : ``}${secondsTemp}`
     }
 
     stopTime() {
