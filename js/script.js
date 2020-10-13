@@ -8,7 +8,7 @@ const moves = document.querySelector(`.moves p`);
 class Game {
     constructor(numberOfRings, numberOfPegs = 3) {
         this.listOfPegs = this.initializeArray(Peg, numberOfPegs);
-        this.listOfPegs[0].ringsOnPeg = this.initializeArray(Ring, numberOfRings);
+        this.listOfRings = this.initializeArray(Ring, numberOfRings);
         this.numberOfRings = numberOfRings;
         this.selectedRing;
         this.selectedPeg;
@@ -18,7 +18,7 @@ class Game {
             peg.element.addEventListener(`mouseleave`, (event) => this.onPegDeparture(event));
             peg.element.addEventListener(`click`, (event) => this.onPegClick(event));
         });
-        this.listOfPegs[0].ringsOnPeg.forEach(ring => {
+        this.listOfRings.forEach(ring => {
             ring.element.addEventListener(`mouseover`, (event) => this.onRingEntry(event));
             ring.element.addEventListener(`mouseleave`, (event) => this.onRingDeparture(event));
             ring.element.addEventListener(`click`, (event) => this.onRingClick(event));
@@ -111,8 +111,7 @@ class Game {
     }
 
     increaseMoveCounter() {
-        const currentMoves = document.querySelector(`.moves p`);
-        currentMoves.innerHTML = parseInt(currentMoves.innerHTML) + 1;
+        moves.innerHTML = parseInt(moves.innerHTML) + 1;
     }
 
     getCurrentScore() {
