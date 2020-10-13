@@ -244,12 +244,13 @@ class Ring {
 
 class Reset {
     constructor() {
-        this.reset = document.querySelector(`#resetGame`);
-        this.reset.addEventListener(`click`, this.storeRingsAndRestart);
+        this.resetButtons = document.querySelectorAll(`.reset button`);
+        this.resetButtons.forEach(button => button.addEventListener(`click`, this.storeRingsAndRestart));
     }
 
     storeRingsAndRestart() {
-        localStorage.setItem(`rings`, 3);
+        this.numberOfRings = this.getAttribute(`rings`);
+        localStorage.setItem(`rings`, this.numberOfRings);
         location.reload();
     }
 }
