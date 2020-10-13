@@ -38,6 +38,16 @@ class Game {
         });
     }
 
+    onPegEntry(event) {
+        if (this.selectedRing) {
+            event.target.style.background = `green`;
+        }
+    }
+
+    onPegDeparture(event) {
+        event.target.style.background = ``;
+    }
+
     onPegClick(event) {
         if (this.selectedRing && this.isThisPegsTopRingBiggerThanMovingOne(event.target)) {
             this.selectedPeg = event.target;
@@ -56,32 +66,21 @@ class Game {
         return !currentTopRing || currentTopRing.style.width > this.selectedRing.style.width;
     }
 
+    moveRing() {
+        this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
+        this.increaseMoveCounter();
+    }
+
+    increaseMoveCounter() {
+        moves.innerHTML = parseInt(moves.innerHTML) + 1;
+    }
+
     resetSelections() {
         this.selectedRing.style.background = ``;
         this.selectedPeg.style.background = ``;
 
         this.selectedRing = ``;
         this.selectedPeg = ``;
-    }
-
-    onPegEntry(event) {
-        if (this.selectedRing) {
-            event.target.style.background = `green`;
-        }
-    }
-
-    onPegDeparture(event) {
-        event.target.style.background = ``;
-    }
-
-    onRingClick(event) {
-        if (this.isARingSelected(event.target)) {
-            event.target.style.background = ``;
-            this.selectedRing = ``;
-        } else if (this.isTopRing(event.target) && !this.selectedRing) {
-            event.target.style.background = `green`;
-            this.selectedRing = event.target;
-        }
     }
 
     onRingEntry(event) {
@@ -96,6 +95,20 @@ class Game {
         }
     }
 
+    onRingClick(event) {
+        if (this.isARingSelected(event.target)) {
+            event.target.style.background = ``;
+            this.selectedRing = ``;
+        } else if (this.isTopRing(event.target) && !this.selectedRing) {
+            event.target.style.background = `green`;
+            this.selectedRing = event.target;
+        }
+    }
+
+    isARingSelected(ring) {
+        return ring.style.background === `green`;
+    }
+
     isTopRing(ring) {
         return this.getTopRing(ring) === ring;
     }
@@ -103,19 +116,6 @@ class Game {
     getTopRing(peg) {
         const topRing = peg.parentElement.querySelector(`.ring`);
         return topRing ? topRing : false;
-    }
-
-    isARingSelected(ring) {
-        return ring.style.background === `green`;
-    }
-
-    moveRing() {
-        this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
-        this.increaseMoveCounter();
-    }
-
-    increaseMoveCounter() {
-        moves.innerHTML = parseInt(moves.innerHTML) + 1;
     }
 
     getCurrentScore() {
