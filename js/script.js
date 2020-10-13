@@ -84,7 +84,7 @@ class Game {
 
     isPegLegalForRing(peg) {
         const currentTopRing = this.getTopRing(peg);
-        return !currentTopRing || currentTopRing.style.width > this.selectedRing.style.width;
+        return !currentTopRing || parseInt(currentTopRing.style.width) > parseInt(this.selectedRing.style.width);
     }
 
     moveRing() {
@@ -172,8 +172,8 @@ class Game {
     outputWinMessage() {
         const message = `Congratulations. You've won!`
         console.log(message);
-        const winnerMessage = document.querySelector(`.output p`);
-        winnerMessage.innerHTML = message;
+        // const winnerMessage = document.querySelector(`.output p`);
+        // winnerMessage.innerHTML = message;
         window.setTimeout(() => alert(message), 250);
     }
 }
