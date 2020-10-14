@@ -261,7 +261,7 @@ class ResetGame {
     }
 
     storeRingsAndRestart() {
-        this.numberOfRings = this.getAttribute(`rings`);
+        this.numberOfRings = this.getAttribute(`data-rings`);
         localStorage.setItem(`rings`, this.numberOfRings);
         location.reload();
     }
