@@ -78,6 +78,7 @@ class Game {
             if (this.isComplete()) {
                 this.timer.stopTime();
                 this.destroyEventListeners();
+                this.stopRingDragging();
                 this.outputWinMessage();
                 this.updateScore();
             }
@@ -177,6 +178,10 @@ class Game {
         // const winnerMessage = document.querySelector(`.output p`);
         // winnerMessage.innerHTML = message;
         window.setTimeout(() => alert(message), 250);
+    }
+
+    stopRingDragging () {
+        this.listOfRings.forEach(ring => ring.element.setAttribute(`draggable`, `false`));
     }
 }
 
