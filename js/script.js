@@ -17,7 +17,8 @@ class Game {
 
         score.innerHTML = this.getCurrentScore();
 
-        new Reset();
+        this.reset = new Reset();
+        this.solver = new Solve();
         this.timer = new Timer();
     }
 
@@ -69,8 +70,9 @@ class Game {
     }
 
     onPegClick(event) {
-        if (this.selectedRing && this.isPegLegalForRing(event.target)) {
-            this.selectedPeg = event.target;
+        event = event.target ? event.target : event;
+        if (this.selectedRing && this.isPegLegalForRing(event)) {
+            this.selectedPeg = event;
             this.moveRing();
             this.resetSelections();
             if (this.isComplete()) {
@@ -88,7 +90,7 @@ class Game {
     }
 
     moveRing() {
-        this.selectedPeg.parentElement.querySelector(`.rings`).prepend(this.selectedRing);
+        this.selectedPeg.closest(`.container`).querySelector(`.rings`).prepend(this.selectedRing);
         this.increaseMoveCounter();
     }
 
@@ -256,6 +258,65 @@ class Reset {
         this.numberOfRings = this.getAttribute(`rings`);
         localStorage.setItem(`rings`, this.numberOfRings);
         location.reload();
+    }
+}
+
+
+class Solve {
+    constructor() {
+        this.solveButton = document.querySelector(`#solveButton`);
+        this.solveButton.addEventListener(`click`, this.solve.bind(this));
+    }
+
+    getTopRings(peg1, peg2) {
+        this.ring1 = game.getTopRing(peg1);
+        this.ring2 = game.getTopRing(peg2);
+    }
+
+    sleep(ms) {
+        return new Promise(
+          resolve => setTimeout(resolve, ms)
+        );
+    }
+
+    validateRing(ring) {
+        game.selectedRing = ring;
+        return game.selectedRing;
+    }
+
+    makeValidMove(peg1, peg2) {
+        if (!game.isComplete()) {
+            this.getTopRings(peg1, peg2);
+            if (this.validateRing(this.ring1) && game.isPegLegalForRing(peg2)) {
+                game.onPegClick(peg2);
+            } else if(this.validateRing(this.ring2) && game.isPegLegalForRing(peg1)) {
+                game.onPegClick(peg1);
+            }
+        }
+    }
+
+    solve() {
+        this.pegA = game.listOfPegs[0].element;
+        this.pegB = game.listOfPegs[1].element;
+        this.pegC = game.listOfPegs[2].element;
+          
+        async function solveLoop() {
+            if (!(game.numberOfRings % 2)) {
+                
+            } else {
+                this.makeValidMove.bind(this)(this.pegA, this.pegC);
+                await this.sleep(500);
+                this.makeValidMove.bind(this)(this.pegA, this.pegB);
+                await this.sleep(500);
+                this.makeValidMove.bind(this)(this.pegB, this.pegC);
+                await this.sleep(500);
+            }
+            if (!game.isComplete()) {
+                this.solve();
+            }
+        }
+
+        solveLoop.bind(this)();
     }
 }
 
