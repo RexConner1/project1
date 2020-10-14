@@ -3,6 +3,16 @@ header, footer {
     list-style-position: inside;
 }
 
+.instructions {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #FFFFCC;
+    color: #330000;
+    font-family: 'Press Start 2P', cursive, sans-serif;
+}
+
 main {
     display: grid;
     grid-template-rows: 125px 400px 40px 125px;
@@ -69,6 +79,7 @@ main {
     height: 25px;
     border: 2.5px solid black;
     text-align: center;
+    background: white;
 }
 
 .bottom {
