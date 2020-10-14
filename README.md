@@ -11,7 +11,7 @@ This project involves creating a game that meets the following requirements:
 - Show a good commit history with frequent commits
 
 ## Description
-A game where an ascending stack of rings must be moved from one rod to another where:
+Tower of Hanoi is a game where an ascending stack of rings must be moved from one rod to another where:
 
 1. Only one ring can be moved at a time
 2. No larger ring can be placed on a smaller
@@ -22,9 +22,11 @@ A game where an ascending stack of rings must be moved from one rod to another w
 
 ## Main Features
 - Features games ranging from 3 rings to 7 rings
-- Rings are able to be moved to pegs EITHER by clicking or by dragging 
+- Rings are able to be moved to pegs either by clicking OR by dragging 
 - Automatic solution of puzzle (from game start)
 - Checks in place to avoid illegal moves
+    - Rings will only highlight if they are on top
+    - Pegs will only highlight if rings can legally be moved onto them
 - A scoring system based on the number of moves and the solution time
 
 ## User Stories
@@ -88,8 +90,8 @@ class Timer {
 - Score formula
     - =(Least possible # of moves * 2 seconds per move) / (User moves * User times)
     - Stored using local storage
-- Drag and drop attributes for the rings (using Canvas) were used to serve as an alternative to moving
-- The automatic solution was "solved" using an iterative solution
+- Drag and drop attributes for the rings (using Canvas) were used to serve as an alternative to clicking
+- The automatic solution was "solved" in itself using an iterative solution
     - For an odd number of rings, legal moves would be made (if possible) between:
         1. Pegs A and C
         2. Pegs A and B
