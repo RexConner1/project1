@@ -42,7 +42,7 @@ Vanilla Javascript, HTML, and CSS
 - Structure of a Container:
 ![](images/userStories.jpg)
 
-- Javascript was were 95% of the time was spent
+- Javascript was where 95% of the time was spent
     - CSS was known from the beginning to be a "back burner"/platinum plan idea
     - Rather than using fixed HTML content, divs were generated using JS for all game elements
 - I decided to put all objects (i.e. rings, pegs, each button, etc.) into its own separate class
