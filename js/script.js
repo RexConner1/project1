@@ -256,7 +256,7 @@ class Ring {
 
 class ResetGame {
     constructor() {
-        this.resetButtons = document.querySelectorAll(`.resetGame button div`);
+        this.resetButtons = document.querySelectorAll(`.resetGame div`);
         this.resetButtons.forEach(button => button.addEventListener(`click`, this.storeRingsAndRestart));
     }
 
