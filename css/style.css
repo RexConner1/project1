@@ -19,11 +19,11 @@ main {
     align-items: center; */
 }
 
-.timer, .reset {
+.timer, .resetGame {
     grid-column: 1;
 }
 
-.score, .hint {
+.score, .resetScore {
     grid-column: 2;
 }
 

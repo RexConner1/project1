@@ -17,7 +17,8 @@ class Game {
 
         score.innerHTML = this.getCurrentScore();
 
-        this.reset = new Reset();
+        this.resetGame = new ResetGame();
+        this.resetScore = new ResetScore();
         this.solver = new Solve();
         this.timer = new Timer();
     }
@@ -253,9 +254,9 @@ class Ring {
 }
 
 
-class Reset {
+class ResetGame {
     constructor() {
-        this.resetButtons = document.querySelectorAll(`.reset button`);
+        this.resetButtons = document.querySelectorAll(`.resetGame button`);
         this.resetButtons.forEach(button => button.addEventListener(`click`, this.storeRingsAndRestart));
     }
 
@@ -263,6 +264,19 @@ class Reset {
         this.numberOfRings = this.getAttribute(`rings`);
         localStorage.setItem(`rings`, this.numberOfRings);
         location.reload();
+    }
+}
+
+
+class ResetScore {
+    constructor() {
+        this.resetScore = document.querySelector(`.resetScore button`);
+        this.resetScore.addEventListener(`click`, this.clearScore);
+    }
+
+    clearScore() {
+        localStorage.removeItem(`score`);
+        score.innerHTML = 0;
     }
 }
 
