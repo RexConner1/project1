@@ -49,6 +49,7 @@ Vanilla Javascript, HTML, and CSS
     - The belief was that this would make the code easier to understand and edit
     - This did create a problem in maintaining local variables
 - For every new issue or error I ran into or thought of, I added to a list of TO DO items
+    - These can be seen in the "Structure of a Container" image above
 - The automatic solution was "solved" using logic 
     - Uses recursion
 
