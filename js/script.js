@@ -176,8 +176,6 @@ class Game {
     outputWinMessage() {
         const message = `Congratulations. You've won!`
         console.log(message);
-        // const winnerMessage = document.querySelector(`.output p`);
-        // winnerMessage.innerHTML = message;
         window.setTimeout(() => alert(message), 250);
     }
 
