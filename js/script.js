@@ -321,7 +321,12 @@ class Solve {
           
         async function solveLoop() {
             if (!(game.numberOfRings % 2)) {
-                
+                this.makeValidMove.bind(this)(this.pegA, this.pegB);
+                await this.sleep(500);
+                this.makeValidMove.bind(this)(this.pegA, this.pegC);
+                await this.sleep(500);
+                this.makeValidMove.bind(this)(this.pegB, this.pegC);
+                await this.sleep(500);
             } else {
                 this.makeValidMove.bind(this)(this.pegA, this.pegC);
                 await this.sleep(500);
