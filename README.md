@@ -34,6 +34,25 @@ Vanilla Javascript, HTML, and CSS
 - Wireframe:
 ![](images/wireframe.jpg)
 
+## The Approach
+- Based on the wireframe image, the page itself was constructed using a grid layout
+- Another grid system for the elements of the peg container (peg, rings) was considered
+    - However, easier/less complicated result were achieved using flex-end containering
+
+- Structure of a Container:
+![](images/userStories.jpg)
+
+- Javascript was were 95% of the time was spent
+    - CSS was known from the beginning to be a "back burner"/platinum plan idea
+    - Rather than using fixed HTML content, divs were generated using JS for all game elements
+- I decided to put all objects (i.e. rings, pegs, each button, etc.) into its own separate class
+    - The belief was that this would make the code easier to understand and edit
+    - This did create a problem in maintaining local variables
+- For every new issue or error I ran into or thought of, I added to a list of TO DO items
+- The automatic solution was "solved" using logic 
+    - Uses recursion
+
+
 ## Unsolved Problems
 - The styling/CSS structuring of the project could use a bit more creativity
 - The formula used to generate the "Total Score" is arbitrary.
